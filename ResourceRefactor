@@ -1,0 +1,21 @@
+package qn2_Exceptions;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class ResourceRefactor {
+    public static void main(String[] args) {
+        
+        // Using try-with-resources clean up code by letting Java handle the closing of data streams automatically
+        try (BufferedReader br = new BufferedReader(new FileReader("data.txt"))) {
+            
+            String line = br.readLine();
+            System.out.println(line);
+            
+        } catch (IOException e) {
+            System.err.println("An error occurred while managing the file: " + e.getMessage());
+        }
+        
+    }
+}
