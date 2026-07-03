@@ -1,0 +1,59 @@
+package qn2_Exceptions;
+
+public class ExceptionsDriver {
+    
+    // Part A method implementation
+    public static int mystery() {
+        try {
+            System.out.println("A");
+            return 1;
+        } catch (Exception e) {
+            System.out.println("B");
+            return 2;
+        } finally {
+            System.out.println("C");
+            return 3;
+        }
+    }
+
+    // Part B method implementation
+    public static int risky(int x) {
+        try {
+            if (x == 0) {
+                throw new ArithmeticException();
+            }
+            return 10 / x;
+        } catch (ArithmeticException e) {
+            System.out.println("caught");
+            return -1;
+        } finally {
+            System.out.println("done");
+        }
+    }
+
+    // Main execution point for the folder
+    public static void main(String[] args) {
+        System.out.println("--- Execution Summary for Question 2 ---");
+
+        System.out.println("\nExecuting Part A:");
+        int mysteryOutput = mystery();
+        System.out.println("Returned value to main: " + mysteryOutput);
+
+        System.out.println("\nExecuting Part B (i) with x = 0:");
+        int riskyZeroOutput = risky(0);
+        System.out.println("Returned value to main: " + riskyZeroOutput);
+
+        System.out.println("\nExecuting Part B (ii) with x = 2:");
+        int riskyTwoOutput = risky(2);
+        System.out.println("Returned value to main: " + riskyTwoOutput);
+
+        System.out.println("\nExecuting Part C (Custom Exception Test):");
+        BankAccount account = new BankAccount();
+        try {
+            // Attempting to withdraw 60,000 when the balance is only 50,000
+            account.withdraw(60000.0); 
+        } catch (InsufficientFundsException e) {
+            System.out.println("Caught Expected Error Message: " + e.getMessage());
+        }
+    }
+}
